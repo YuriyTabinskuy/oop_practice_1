@@ -18,4 +18,4 @@ class Animal {
                ", Temperament: " + temperament + ", Color: " + color +  
                ", Price: $" + price;  
     }  
-}  
+}
