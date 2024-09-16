@@ -1,19 +1,19 @@
-class Cat extends Animal {  
-    private String furType; 
+class Cat {
+    private String breed;
+    private String temperament;
+    private String traits;
+    private String color;
+    private int price;
 
-    public Cat(String breed, String characteristics, String temperament, String color, double price, String furType) {  
-        super(breed, characteristics, temperament, color, price);  
-        this.furType = furType;  
-    }  
-
-    @Override  
-    public String getInfo() {  
-        return "Cat Breed: " + breed + ", Characteristics: " + characteristics +  
-               ", Temperament: " + temperament + ", Color: " + color +  
-               ", Price: $" + price + ", Fur Type: " + furType;  
+    public Cat(String breed, String temperament, String traits, String color, int price) {
+        this.breed = breed;
+        this.temperament = temperament;
+        this.traits = traits;
+        this.color = color;
+        this.price = price;
     }
 
-    public String getFurType() {
-        return furType;
+    public String getInfo() {
+        return "Breed: " + breed + "\nTemperament: " + temperament + "\nTraits: " + traits + "\nColor: " + color + "\nPrice: $" + price;
     }
 }

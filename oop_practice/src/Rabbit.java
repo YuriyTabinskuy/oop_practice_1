@@ -1,19 +1,19 @@
-class Rabbit extends Animal {  
-    private double weight; 
+class Rabbit {
+    private String breed;
+    private String temperament;
+    private String traits;
+    private String color;
+    private int price;
 
-    public Rabbit(String breed, String characteristics, String temperament, String color, double price, double weight) {  
-        super(breed, characteristics, temperament, color, price);  
-        this.weight = weight;  
-    }  
-
-    @Override  
-    public String getInfo() {  
-        return "Rabbit Breed: " + breed + ", Characteristics: " + characteristics +  
-               ", Temperament: " + temperament + ", Color: " + color +   
-               ", Price: $" + price + ", Weight: " + weight + "kg";  
+    public Rabbit(String breed, String temperament, String traits, String color, int price) {
+        this.breed = breed;
+        this.temperament = temperament;
+        this.traits = traits;
+        this.color = color;
+        this.price = price;
     }
 
-    public double getWeight() {
-        return weight;
+    public String getInfo() {
+        return "Breed: " + breed + "\nTemperament: " + temperament + "\nTraits: " + traits + "\nColor: " + color + "\nPrice: $" + price;
     }
 }

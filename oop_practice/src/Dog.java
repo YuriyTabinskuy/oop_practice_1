@@ -1,19 +1,19 @@
-class Dog extends Animal {  
-    private String size; 
+class Dog {
+    private String breed;
+    private String temperament;
+    private String traits;
+    private String color;
+    private int price;
 
-    public Dog(String breed, String characteristics, String temperament, String color, double price, String size) {  
-        super(breed, characteristics, temperament, color, price);  
-        this.size = size;  
-    }  
-
-    @Override  
-    public String getInfo() {  
-        return "Dog Breed: " + breed + ", Characteristics: " + characteristics +   
-               ", Temperament: " + temperament + ", Color: " + color +   
-               ", Price: $" + price + ", Size: " + size;  
+    public Dog(String breed, String temperament, String traits, String color, int price) {
+        this.breed = breed;
+        this.temperament = temperament;
+        this.traits = traits;
+        this.color = color;
+        this.price = price;
     }
 
-    public String getSize() {
-        return size;
+    public String getInfo() {
+        return "Breed: " + breed + "\nTemperament: " + temperament + "\nTraits: " + traits + "\nColor: " + color + "\nPrice: $" + price;
     }
 }

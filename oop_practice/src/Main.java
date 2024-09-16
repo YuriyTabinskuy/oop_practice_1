@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println("Hello, World!");
-         Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int choice;
 
         do {
@@ -23,7 +23,7 @@ public class Main {
                     printDogs();
                     break;
                 case 3:
-                   printRabbits();
+                    printRabbits();
                     break;
                 case 0:
                     System.out.println("Програма завершує роботу.");
@@ -35,6 +35,7 @@ public class Main {
 
         scanner.close();
     }
+
     public static void printCats() {
         Cat[] cats = {  
             new Cat("British Shorthair", "Calm, easygoing", "Loyal and playful", "Blue", 1200),  
@@ -47,8 +48,8 @@ public class Main {
             System.out.println(cat.getInfo());  
             System.out.println();  
         }  
-    }  
-    
+    }
+
     public static void printDogs() {  
         Dog[] dogs = {  
             new Dog("Labrador Retriever", "Friendly, outgoing", "Great with kids", "Black", 1000),  
@@ -61,8 +62,8 @@ public class Main {
             System.out.println(dog.getInfo());  
             System.out.println();  
         }  
-    }  
-    
+    }
+
     public static void printRabbits() {  
         Rabbit[] rabbits = {  
             new Rabbit("Holland Lop", "Friendly and affectionate", "Playful and energetic", "Various colors", 50),  
@@ -76,5 +77,4 @@ public class Main {
             System.out.println();  
         }  
     }
-    }
-
+}
