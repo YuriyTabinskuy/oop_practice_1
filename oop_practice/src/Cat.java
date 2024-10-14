@@ -1,19 +1,16 @@
-class Cat {
-    private String breed;
-    private String temperament;
-    private String traits;
-    private String color;
-    private int price;
+class Cat extends Animal {
 
-    public Cat(String breed, String temperament, String traits, String color, int price) {
-        this.breed = breed;
-        this.temperament = temperament;
-        this.traits = traits;
-        this.color = color;
-        this.price = price;
+    public Cat(String breed, String temperament, String characteristics, String color, double price) {
+        super(breed, characteristics, temperament, color, price);
     }
 
+    @Override
     public String getInfo() {
-        return "Breed: " + breed + "Temperament: " + temperament + "Traits: " + traits + "Color: " + color + "Price: $" + price;
+        return "Cat - " + super.getInfo();
+    }
+
+    @Override
+    public void sound() {
+        System.out.println("Мяу!");
     }
 }
