@@ -14,6 +14,6 @@ class Dog {
     }
 
     public String getInfo() {
-        return "Breed: " + breed + "\nTemperament: " + temperament + "\nTraits: " + traits + "\nColor: " + color + "\nPrice: $" + price;
+        return "Breed: " + breed + "Temperament: " + temperament + "Traits: " + traits + "Color: " + color + "Price: $" + price;
     }
 }
