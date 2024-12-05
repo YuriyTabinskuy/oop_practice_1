@@ -1,16 +1,18 @@
-class Animal {
+abstract class Animal  {
     private String breed;
     private String characteristics;
     private String temperament;
     private String color;
     private double price;
+    private int age;
 
-    public Animal(String breed, String characteristics, String temperament, String color, double price) {
+    public Animal(String breed, String characteristics, String temperament, String color, double price, int age) {
         this.breed = breed;
         this.characteristics = characteristics;
         this.temperament = temperament;
         this.color = color;
         this.price = price;
+        this.age = age;
     }
 
     public String getBreed() {
@@ -33,13 +35,14 @@ class Animal {
         return price;
     }
 
-    public String getInfo() {
-        return "Breed: " + breed + ", Characteristics: " + characteristics + 
-               ", Temperament: " + temperament + ", Color: " + color + 
-               ", Price: $" + price;
+    public int getAge() {
+        return age;
     }
 
-    public void sound() {
-        System.out.println("Animal sound");
-    }
+    public abstract void sound();
+
+    public abstract String getInfo();
 }
+
+
+

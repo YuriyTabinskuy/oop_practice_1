@@ -1,83 +1,81 @@
-import java.util.Scanner;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        Scanner scanner = new Scanner(System.in);
-        int choice;
 
-        do {
-            System.out.println("Оберіть категорію: ");
-            System.out.println("1. Cats");
-            System.out.println("2. Dogs");
-            System.out.println("3. Rabbits");
-            System.out.println("0. Вийти");
+        List<Animal> animals = Arrays.asList(
+            new Cat("Persian", "Fluffy and friendly", "Calm and loving", "White", 1000, getRandomAge()),
+            new Cat("Siamese", "Elegant and talkative", "Affectionate and vocal", "Cream", 800, getRandomAge()),
+            new Cat("Maine Coon", "Large and playful", "Gentle and intelligent", "Brown", 1200, getRandomAge()),
+            new Cat("Bengal", "Spotted and energetic", "Playful and active", "Golden", 1500, getRandomAge()),
+            new Cat("Siberian", "Thick coat and friendly", "Loyal and calm", "Gray", 1100, getRandomAge()),
 
-            choice = scanner.nextInt();
+            new Dog("Golden Retriever", "Loyal and intelligent", "Friendly and playful", "Golden", 1500, getRandomAge()),
+            new Dog("Labrador", "Energetic and smart", "Friendly and outgoing", "Black", 1400, getRandomAge()),
+            new Dog("German Shepherd", "Protective and loyal", "Brave and smart", "Brown and black", 1800, getRandomAge()),
+            new Dog("Bulldog", "Calm and strong", "Friendly and gentle", "White", 1200, getRandomAge()),
+            new Dog("Poodle", "Intelligent and trainable", "Energetic and loving", "White", 1600, getRandomAge()),
 
-            switch (choice) {
-                case 1:
-                    printCats();
-                    break;
-                case 2:
-                    printDogs();
-                    break;
-                case 3:
-                    printRabbits();
-                    break;
-                case 0:
-                    System.out.println("Програма завершує роботу.");
-                    break;
-                default:
-                    System.out.println("Неправильний вибір.");
-            }
-        } while (choice != 0);
+            new Rabbit("Dutch", "Small and cute", "Gentle and curious", "Brown and white", 500, getRandomAge()),
+            new Rabbit("Lionhead", "Fluffy mane", "Gentle and friendly", "Gray", 600, getRandomAge()),
+            new Rabbit("Mini Lop", "Compact and sweet", "Affectionate and playful", "White", 700, getRandomAge()),
+            new Rabbit("Flemish Giant", "Large and calm", "Gentle and laid-back", "Brown", 800, getRandomAge()),
+            new Rabbit("Rex", "Velvety fur", "Playful and curious", "Black", 550, getRandomAge())
+        );
 
-        scanner.close();
-    }
+       // Виведення оригінального списку
+       System.out.println("Original List:");
+       animals.forEach(animal -> System.out.println(animal.getInfo()));
 
-    public static void printCats() {
-        Cat[] cats = {
-            new Cat("British Shorthair", "Calm, easygoing", "Loyal and playful", "Blue", 1200),
-            new Cat("Sphynx", "Hairless breed", "Affectionate and energetic", "Nude", 1500),
-            new Cat("Ragdoll", "Large, fluffy", "Gentle and friendly", "Blue point", 1800),
-            new Cat("Scottish Fold", "Unique folded ears", "Adaptable and social", "Cream", 1300)
-        };
+       // Сортування за ціною (від найдорожчого до найдешевшого)
+       animals.sort(Comparator.comparingDouble(Animal::getPrice).reversed());
+       System.out.println("Sorted by Price (Descending):");
+       animals.forEach(animal -> System.out.println(animal.getInfo()));
 
-        for (Cat cat : cats) {
-            System.out.println(cat.getInfo());
-            cat.sound();
-            System.out.println();
-        }
-    }
+       // Сортування за ціною (від найдешевшого до найдорожчого)
+       animals.sort(Comparator.comparingDouble(Animal::getPrice));
+       System.out.println("Sorted by Price (Ascending):");
+       animals.forEach(animal -> System.out.println(animal.getInfo()));
 
-    public static void printDogs() {
-        Dog[] dogs = {
-            new Dog("Labrador Retriever", "Friendly, outgoing", "Great with kids", "Black", 1000),
-            new Dog("Poodle", "Intelligent, adaptable", "Hypoallergenic fur", "White", 1200),
-            new Dog("Beagle", "Curious and merry", "Great family dog", "Tricolor", 800),
-            new Dog("Bulldog", "Gentle and courageous", "Good with children", "Fawn", 1300)
-        };
+       // Сортування за віком (найстарші спочатку), а потім по алфавіту
+       animals.sort(Comparator.comparingInt(Animal::getAge).reversed().thenComparing(Animal::getBreed));
+       System.out.println("Sorted by Age (Descending) and Breed:");
+       animals.forEach(animal -> System.out.println(animal.getInfo()));
 
-        for (Dog dog : dogs) {
-            System.out.println(dog.getInfo());
-            dog.sound();
-            System.out.println();
-        }
-    }
+       // Сортування за алфавітом, а потім за віком (зростання)
+       animals.sort(Comparator.comparing(Animal::getBreed).thenComparingInt(Animal::getAge));
+       System.out.println("Sorted by Breed and Age (Ascending):");
+       animals.forEach(animal -> System.out.println(animal.getInfo()));
 
-    public static void printRabbits() {
-        Rabbit[] rabbits = {
-            new Rabbit("Holland Lop", "Friendly and affectionate", "Playful and energetic", "Various colors", 50),
-            new Rabbit("Netherland Dwarf", "Small and gentle", "Curious and social", "Various colors", 60),
-            new Rabbit("Mini Rex", "Soft, velvety fur", "Calm and friendly", "Black and white", 70),
-            new Rabbit("English Angora", "Long, fluffy fur", "Quiet and sweet", "White", 80)
-        };
 
-        for (Rabbit rabbit : rabbits) {
-            System.out.println(rabbit.getInfo());
-            rabbit.sound();
-            System.out.println();
-        }
-    }
+       try {
+           checkAgeLimit(animals.get(0)); 
+       } catch (AnimalAgeException e) {
+           System.out.println("" + e.getMessage());
+       }
+
+
+       System.out.println("Interacting with the pets:");
+       animals.forEach(animal -> {
+           if (animal instanceof Pet) {
+               Pet pet = (Pet) animal;
+               pet.feed();
+               pet.groom();
+           }
+       });
+   }
+
+
+   private static int getRandomAge() {
+       return (int) (1 + Math.random() * 10); 
+   }
+
+ 
+   public static void checkAgeLimit(Animal animal) throws AnimalAgeException {
+       if (animal.getAge() > 20) {
+           throw new AnimalAgeException("Age of the animal exceeds the limit: " + animal.getBreed());
+       }
+   }
 }
